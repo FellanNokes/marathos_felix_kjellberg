@@ -162,11 +162,11 @@ def clean_marathos():
     df = df.where(
         (
             (col("distance_type") == "miles") &
-            (col("average_speed") <= 13.05)
+            (col("average_speed") <= 11.74)
         ) |
         (
             (col("distance_type") != "miles") &
-            (col("average_speed") <= 21)
+            (col("average_speed") <= 18.9)
         ) |
         (col("average_speed").isNull())
     )
