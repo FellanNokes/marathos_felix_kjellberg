@@ -221,10 +221,20 @@ def clean_marathos():
 
     # Extract duration in hours
     df = df.withColumn("event_duration_hours",
-        when(col("distance_type") == "time",
-            regexp_extract(col("event_distance_or_length"), r"(\d+\.?\d*)", 1).cast("double")
-        ).otherwise(None)
-    )
+    when(col("distance_type") == "time",
+        # Format: HH:MMh → convert to decimal hours
+        when(col("event_distance_or_length").rlike(r"^\d+:\d{2}h?$"),
+            regexp_extract(col("event_distance_or_length"), r"^(\d+):", 1).cast("double") +
+            regexp_extract(col("event_distance_or_length"), r":(\d{2})h?$", 1).cast("double") / 60
+        )
+        # Format: Xh → just extract number
+        .otherwise(
+            round(
+                regexp_extract(col("event_distance_or_length"), r"(\d+\.?\d*)", 1).cast("double")
+            )
+        )
+    ).otherwise(None)
+)
     
     # Step 13 - Drop original columns
     return df.drop(
