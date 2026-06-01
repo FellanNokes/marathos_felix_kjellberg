@@ -2,7 +2,9 @@ Table fct_results {
   result_id varchar [primary key]
   event_id varchar [ref: > dim_event.event_id]
   athlete_id_hash varchar [ref: > dim_athlete.athlete_id_hash]
-  start_date date [ref: > dim_date.start_date]
+  date date [ref: > dim_date.date]
+  year_of_event integer
+  distance_type string
   performance_seconds integer
   performance_distance double
   average_speed double
@@ -13,9 +15,11 @@ Table dim_event {
   event_id varchar [primary key]
   event_name string
   event_distance_or_length string
+  event_distance_km double
+  event_duration_hours double
   distance_type string
-  start_date date
-  end_date date
+  start_date date [ref: > dim_date.date]
+  end_date date [ref: > dim_date.date]
 }
 
 Table dim_athlete {
@@ -26,11 +30,12 @@ Table dim_athlete {
   athlete_gender string
   athlete_age_category string
   country_name string
+  is_ioc bool
   athlete_id_is_placeholder boolean
 }
 
 Table dim_date {
-  start_date date [primary key]
+  date date [primary key]
   year integer
   month integer
   month_name string
@@ -38,4 +43,5 @@ Table dim_date {
   day_name string
   day_of_week integer
   quarter integer
+  is_weekend bool
 }
