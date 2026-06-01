@@ -206,7 +206,27 @@ def clean_marathos():
     sha2(concat_ws("_", col("athlete_id_hash"), col("event_id")), 256)
     )
 
-    # Step 12 - Drop original columns
+    # Step 12 - event distance and event duration
+    # Extract distance in km
+    df = df.withColumn("event_distance_km",
+        when(col("distance_type") == "km",
+            regexp_extract(col("event_distance_or_length"), r"(\d+\.?\d*)", 1).cast("double")
+        ).when(col("distance_type") == "miles",
+            round(
+                regexp_extract(col("event_distance_or_length"), r"(\d+\.?\d*)", 1).cast("double") * 1.60934,
+                2
+            )
+        ).otherwise(None)
+    )
+
+    # Extract duration in hours
+    df = df.withColumn("event_duration_hours",
+        when(col("distance_type") == "time",
+            regexp_extract(col("event_distance_or_length"), r"(\d+\.?\d*)", 1).cast("double")
+        ).otherwise(None)
+    )
+    
+    # Step 13 - Drop original columns
     return df.drop(
         "athlete_performance",
         "athlete_average_speed",
