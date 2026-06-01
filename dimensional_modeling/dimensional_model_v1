@@ -1,0 +1,41 @@
+Table fct_results {
+  result_id varchar [primary key]
+  event_id varchar [ref: > dim_event.event_id]
+  athlete_id_hash varchar [ref: > dim_athlete.athlete_id_hash]
+  start_date date [ref: > dim_date.start_date]
+  performance_seconds integer
+  performance_distance double
+  average_speed double
+  event_number_of_finishers integer
+}
+
+Table dim_event {
+  event_id varchar [primary key]
+  event_name string
+  event_distance_or_length string
+  distance_type string
+  start_date date
+  end_date date
+}
+
+Table dim_athlete {
+  athlete_id_hash varchar [primary key]
+  athlete_id integer
+  athlete_club string
+  athlete_year_of_birth integer
+  athlete_gender string
+  athlete_age_category string
+  country_name string
+  athlete_id_is_placeholder boolean
+}
+
+Table dim_date {
+  start_date date [primary key]
+  year integer
+  month integer
+  month_name string
+  day integer
+  day_name string
+  day_of_week integer
+  quarter integer
+}

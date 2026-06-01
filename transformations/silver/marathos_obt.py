@@ -202,6 +202,10 @@ def clean_marathos():
     ).otherwise(sha2(col("athlete_id").cast("string"), 256))
     )
 
+    df = df.withColumn("result_id",
+    sha2(concat_ws("_", col("athlete_id_hash"), col("event_id")), 256)
+    )
+
     # Step 12 - Drop original columns
     return df.drop(
         "athlete_performance",
