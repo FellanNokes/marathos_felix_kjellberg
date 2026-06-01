@@ -1,4 +1,4 @@
-CREATE OR REFRESH MATERIALIZED VIEW marathos.gold.dim_dates
+CREATE OR REFRESH MATERIALIZED VIEW marathos.gold.dim_date
   COMMENT "Dim date table - gold layer" AS
 SELECT DISTINCT
   start_date AS date,
