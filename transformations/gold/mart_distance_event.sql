@@ -10,6 +10,7 @@ SELECT
   re.average_speed,
   re.event_number_of_finishers,
   re.year_of_event,
+  e.event_distance_or_length,
   e.event_name,
   e.event_distance_km,
   e.start_date,

@@ -12,6 +12,7 @@ SELECT
   re.year_of_event,
   e.event_name,
   e.event_duration_hours,
+  e.event_distance_or_length,
   e.start_date,
   e.end_date,
   a.athlete_age,
