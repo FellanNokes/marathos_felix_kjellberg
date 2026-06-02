@@ -3,7 +3,7 @@ USE CATALOG marathos;
 USE SCHEMA gold;
 
 CREATE OR REFRESH MATERIALIZED VIEW marathos.gold.mart_time_event
-  COMMENT "Mart for events that are distance - Gold layer" AS
+  COMMENT "Mart for time based events - Gold layer" AS
 SELECT
   re.distance_type,
   re.performance_distance,
@@ -11,10 +11,11 @@ SELECT
   re.event_number_of_finishers,
   re.year_of_event,
   e.event_name,
-  e.event_distance_km,
+  e.event_duration_hours,
   e.start_date,
   e.end_date,
-  re.year_of_event - a.athlete_year_of_birth AS athlete_age,
+  a.athlete_age,
+  a.athlete_age_category,
   a.athlete_gender,
   a.country_name
 FROM

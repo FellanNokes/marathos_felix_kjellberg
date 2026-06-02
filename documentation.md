@@ -8,3 +8,6 @@ That gives an average speed of approximately:
 ≈18.9 km/h
 
 Sources: Guinness World Records
+
+## finding dupes in gold layer
+The problem seems to be many more placeholder ids then i thought. I found this by comparing how many diffrent birth year each ID has. I got help from LLM on how to deal with this. I was going to try and fix in silver layer but decided to use MAX in gold layer instead.
