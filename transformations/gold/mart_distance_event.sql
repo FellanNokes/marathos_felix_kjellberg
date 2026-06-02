@@ -15,7 +15,7 @@ SELECT
   e.event_distance_km,
   e.start_date,
   e.end_date,
-  a.athlete_age,
+  re.year_of_event - a.athlete_year_of_birth AS athlete_age,
   a.athlete_age_category,
   a.athlete_gender,
   a.country_name

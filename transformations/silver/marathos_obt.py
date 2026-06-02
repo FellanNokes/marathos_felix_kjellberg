@@ -314,16 +314,8 @@ def clean_marathos():
         "result_id", sha2(concat_ws("_", col("athlete_id_hash"), col("event_id")), 256)
     )
 
-
-    # Step 13 - Calculate athlete age
-    df = df.withColumn("athlete_age",
-        when(
-            col("athlete_year_of_birth").isNotNull(),
-            col("year_of_event") - col("athlete_year_of_birth")
-        ).otherwise(None)
-    )
     
-    # Step 14 - Drop original columns
+    # Step 13 - Drop original columns
     return df.drop(
         "athlete_performance",
         "athlete_average_speed",
