@@ -18,5 +18,9 @@ SELECT
   re.year_of_event - a.athlete_year_of_birth AS athlete_age
 FROM
   fct_results re
-    LEFT JOIN dim_event e ON re.event_id = e.event_id
-    LEFT JOIN dim_athlete a ON re.athlete_id_hash = a.athlete_id_hash
+    LEFT JOIN dim_event e
+      ON re.event_id = e.event_id
+    LEFT JOIN dim_athlete a
+      ON re.athlete_id_hash = a.athlete_id_hash
+WHERE
+  re.year_of_event - a.athlete_year_of_birth BETWEEN 10 AND 90

@@ -26,4 +26,5 @@ FROM
     LEFT JOIN dim_athlete a
       ON re.athlete_id_hash = a.athlete_id_hash
 WHERE
-  re.distance_type = 'time';
+  re.distance_type = 'time'
+  AND re.year_of_event - a.athlete_year_of_birth BETWEEN 10 AND 90
