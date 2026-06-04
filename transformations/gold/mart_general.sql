@@ -15,12 +15,14 @@ SELECT
   e.start_date,
   a.athlete_gender,
   a.country_name,
-  re.year_of_event - a.athlete_year_of_birth AS athlete_age
+  re.year_of_event - a.athlete_year_of_birth AS athlete_age,
+  d.year,
+  d.month,
+  d.is_weekend
 FROM
   fct_results re
-    LEFT JOIN dim_event e
-      ON re.event_id = e.event_id
-    LEFT JOIN dim_athlete a
-      ON re.athlete_id_hash = a.athlete_id_hash
+    LEFT JOIN dim_event e ON re.event_id = e.event_id
+    LEFT JOIN dim_athlete a ON re.athlete_id_hash = a.athlete_id_hash
+    LEFT JOIN dim_date d ON re.date = d.date
 WHERE
   re.year_of_event - a.athlete_year_of_birth BETWEEN 10 AND 90
