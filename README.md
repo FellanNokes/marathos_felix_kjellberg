@@ -1,6 +1,6 @@
 # Marathos Data Platform
 
-A data engineering project built for Marathos, a global marathon hosting company. The platform ingests, cleans and models ultra-marathon race data to enable data-driven decisions for business stakeholders.
+A data engineering project built for Marathos, a global marathon hosting company. The platform ingests, cleans and models ultra-marathon race data to enable data-driven decisions for business stakeholders. The platform is built on a streaming architecture, designed to continuously process new race data as it arrives.
 
 ## Tech Stack
 
