@@ -16,7 +16,7 @@ The platform follows a medallion architecture with three layers:
 
 - **Bronze** - Raw data ingestion from CSV files using streaming tables
 - **Silver** - Cleaned and transformed One Big Table (OBT)
-- **Gold** - Dimensional model with fact and dimension tables, marts and views
+- **Gold** - Dimensional model with fact and dimension tables and materialized views
 
 ## Project Structure
 ```
