@@ -19,14 +19,16 @@ The platform follows a medallion architecture with three layers:
 - **Gold** - Dimensional model with fact and dimension tables, marts and views
 
 ## Project Structure
-marathos_felix_kjellberg/
-├── dimensional_modeling/
-├── explorations/
-├── transformations/
+```
+marathos_felix_kjellberg
+├── dimensional_modeling
+├── explorations
+├── transformations
 │   ├── bronze/
 │   ├── silver/
 │   └── gold/
 └── utils/
+```
 
 ## Data
 

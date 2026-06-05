@@ -21,6 +21,9 @@ def to_snake_case(name):
 
 
 def rename_columns_to_snake_case(df):
+    """
+    changes columns name to snake_case from df
+    """
     new_columns = [to_snake_case(column) for column in df.columns]
     return df.toDF(*new_columns)
 
